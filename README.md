@@ -679,7 +679,11 @@ Here's what it looks like:
 
 Windows:
 
+![image-20220512184910123](images/image-20220512184910123.png)
 
+Android Phone:
+
+![image-20220512185319060](images/image-20220512185319060.png)
 
 ## Conclusion
 
@@ -693,11 +697,9 @@ The complete code for this demo can be found in the link below.
 
 ## Resources
 
-| Resource Title                                     | Url                                                                                                                                      |
-| -------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| The .NET Show with Carl Franklin                   | <https://www.youtube.com/playlist?list=PL8h4jt35t1wcontainergW_PqzZ9USrHvvnk8JMQy_>                                                      |
-| MAUI Templates Missing                             | <https://github.com/dotnet/maui/issues/5355?msclkid=6320df98ce5011ec9343dac76b4764f4>                                                    |
-| Configure fonts, services, and handlers at startup | https://docs.microsoft.com/en-us/dotnet/maui/fundamentals/app-startup?msclkid=932cab7dce7511ec85837ed885f1ad6a                           |
-| .NET Generic Host                                  | https://docs.microsoft.com/en-us/dotnet/core/extensions/generic-host                                                                     |
-| Configure Animations                               | https://github.com/dotnet/maui/blob/3717ce0d385d1aadbd3b9795c203d438426aae17/src/Core/src/Hosting/Animations/AppHostBuilderExtensions.cs |
-| Customize controls with handlers                   | https://docs.microsoft.com/en-us/dotnet/maui/user-interface/handlers/customize?msclkid=43512179d0f711ecbf2aa7647c70b84e                  |
+| Resource Title                                     | Url                                                          |
+| -------------------------------------------------- | ------------------------------------------------------------ |
+| The .NET Show with Carl Franklin                   | <https://www.youtube.com/playlist?list=PL8h4jt35t1wcontainergW_PqzZ9USrHvvnk8JMQy_> |
+| MAUI Templates Missing                             | <https://github.com/dotnet/maui/issues/5355?msclkid=6320df98ce5011ec9343dac76b4764f4> |
+| Configure fonts, services, and handlers at startup | https://docs.microsoft.com/en-us/dotnet/maui/fundamentals/app-startup?msclkid=932cab7dce7511ec85837ed885f1ad6a |
+| .NET Generic Host                                  | https://docs.microsoft.com/en-us/dotnet/core/extensions/generic-host |
