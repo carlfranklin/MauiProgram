@@ -1,24 +1,26 @@
-﻿namespace MauiProgram;
+﻿using Microsoft.Extensions.Logging;
+
+namespace MauiProgram;
 
 public partial class MainPage : ContentPage
 {
-	int count = 0;
+    private readonly IApiService _apiService;
+    private readonly ILogger<MainPage> _logger;
 
-	public MainPage()
-	{
-		InitializeComponent();
-	}
+    public MainPage(IApiService apiService, ILogger<MainPage> logger)
+    {
+        _apiService = apiService;
+        _logger = logger;
 
-	private void OnCounterClicked(object sender, EventArgs e)
-	{
-		count++;
+        _logger.LogInformation("MainPage constructor called.");
+        InitializeComponent();
+    }
 
-		if (count == 1)
-			CounterBtn.Text = $"Clicked {count} time";
-		else
-			CounterBtn.Text = $"Clicked {count} times";
+    private void OnGetDataClicked(object sender, EventArgs e)
+    {
+        _logger.LogInformation("OnGetDataClicked called.");
 
-		SemanticScreenReader.Announce(CounterBtn.Text);
-	}
+        CounterLabel.Text = $"Test Data: {_apiService?.GetTestData()}";
+        SemanticScreenReader.Announce(CounterLabel.Text);
+    }
 }
-
