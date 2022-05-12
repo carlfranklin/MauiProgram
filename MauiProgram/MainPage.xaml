@@ -16,7 +16,7 @@
                 HorizontalOptions="Center" />
                 
             <Label 
-                FontFamily="Consolas-Bold"
+                FontFamily="ConsolasBold"
                 Text="Hello, World!"
                 SemanticProperties.HeadingLevel="Level1"
                 FontSize="32"
