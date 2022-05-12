@@ -303,7 +303,7 @@ Let's imagine we need an service that calls some API to get some test data. Let'
 ```csharp
 namespace MauiProgram
 {
-    public class ApiService : IApiService
+    public class ApiService 
     {
         public string GetTestData()
         {
@@ -315,18 +315,18 @@ namespace MauiProgram
 
 As you may know, .NET Core provides Dependency Injection out-of-the box, and Services are added using Dependency injection, so let's extract an interface for the `ApiService` and call it `IApiService.cs`.
 
-![Extract Interface](images/539708ff4618ad12beae4cd7fc8f37966eca6f515c8c38daed5f2c5318f77146.png)  
+With the cursor on `ApiService` in the line `public class ApiService`, press Ctrl-R plus Ctrl-I
 
 ![Extract Interface Dialog](images/67c473814860876a4169614b773662f0e634d155f3000c9ef47b620981c900e5.png)  
 
-That will create the `IApiService` interface, and also will make ApiService implement it.
+That will create the `IApiService` interface, and also will make `ApiService` implement it.
 
 Now all you have to do is to append the following code to our `MauiProgram.cs` file, in the builder.
 
-```csharp
+```c#
 .Services
-				.AddSingleton<MainPage>()
-				.AddSingleton<IApiService, ApiService>()
+    .AddSingleton<MainPage>()
+    .AddSingleton<IApiService, ApiService>()
 ```
 
 The complete file looks like this:
@@ -336,31 +336,36 @@ namespace MauiProgram;
 
 public static class MauiProgram
 {
-	// This method returns the entry point (a MauiApp) and is called from each platform's entry point.
-	public static MauiApp CreateMauiApp()
-	{
-		// MauiApp.CreateBuilder returns a MauiAppBuilder, which is used to configure fonts, resources, and services.
-		var builder = MauiApp.CreateBuilder();
+    // This method returns the entry point (a MauiApp) and is called
+    // from each platform's entry point.
+    public static MauiApp CreateMauiApp()
+    {
+        // MauiApp.CreateBuilder returns a MauiAppBuilder, which
+        // is used to configure fonts, resources, and services.
+        var builder = MauiApp.CreateBuilder();
 
-		builder
-			// We give it our main App class, which derives from Application. App is defined in App.xaml.cs.
-			.UseMauiApp<App>()
-			// Default font configuration.
-			.ConfigureFonts(fonts =>
-			{
-				// AddFont takes a required filename (first parameter) and an optional alias for each font.
-				// When using these fonts in XAML you can use them either by filename (without the extension,) or the alias.
-				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-			})
-			// Register services
-			.Services
-				.AddSingleton<MainPage>()
-				.AddSingleton<IApiService, ApiService>();
+        builder
+            // We give it our main App class, which derives from Application.
+            // App is defined in App.xaml.cs.
+            .UseMauiApp<App>()
+            // Default font configuration.
+            .ConfigureFonts(fonts =>
+            {
+                // AddFont takes a required filename (first parameter)
+                // and an optional alias for each font.
+                // When using these fonts in XAML you can use them
+                // either by filename (without the extension,) or the alias.
+                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+            })
+            // Register services
+            .Services
+                .AddSingleton<MainPage>()
+                .AddSingleton<IApiService, ApiService>();
 
-		// The MauiAppBuilder returns a MauiApp application.
-		return builder.Build();
-	}
+        // The MauiAppBuilder returns a MauiApp application.
+        return builder.Build();
+    }
 }
 ```
 
@@ -455,9 +460,9 @@ Add `using Microsoft.Extensions.Logging;` to your using statements, and add the 
 
 ```csharp
 .AddLogging(configure =>
-					{
-						configure.AddDebug();
-					});
+	{
+		configure.AddDebug();
+	});
 ```
 
 The complete file looks like this:
@@ -469,36 +474,41 @@ namespace MauiProgram;
 
 public static class MauiProgram
 {
-	// This method returns the entry point (a MauiApp) and is called from each platform's entry point.
-	public static MauiApp CreateMauiApp()
-	{
-		// MauiApp.CreateBuilder returns a MauiAppBuilder, which is used to configure fonts, resources, and services.
-		var builder = MauiApp.CreateBuilder();
+    // This method returns the entry point (a MauiApp) and is called
+    // from each platform's entry point.
+    public static MauiApp CreateMauiApp()
+    {
+        // MauiApp.CreateBuilder returns a MauiAppBuilder, which
+        // is used to configure fonts, resources, and services.
+        var builder = MauiApp.CreateBuilder();
 
-		builder
-			// We give it our main App class, which derives from Application. App is defined in App.xaml.cs.
-			.UseMauiApp<App>()
-			// Default font configuration.
-			.ConfigureFonts(fonts =>
-			{
-				// AddFont takes a required filename (first parameter) and an optional alias for each font.
-				// When using these fonts in XAML you can use them either by filename (without the extension,) or the alias.
-				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-			})
-			// Register services
-			.Services
-				.AddSingleton<MainPage>()
-				.AddSingleton<IApiService, ApiService>()
-				// Add Logging
-				.AddLogging(configure =>
-					{
-						configure.AddDebug();
-					});
+        builder
+            // We give it our main App class, which derives from Application.
+            // App is defined in App.xaml.cs.
+            .UseMauiApp<App>()
+            // Default font configuration.
+            .ConfigureFonts(fonts =>
+            {
+                // AddFont takes a required filename (first parameter)
+                // and an optional alias for each font.
+                // When using these fonts in XAML you can use them
+                // either by filename (without the extension,) or the alias.
+                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+            })
+            // Register services
+            .Services
+                .AddSingleton<MainPage>()
+                .AddSingleton<IApiService, ApiService>()
+                // Add Logging
+                .AddLogging(configure =>
+                {
+                    configure.AddDebug();
+                });
 
-		// The MauiAppBuilder returns a MauiApp application.
-		return builder.Build();
-	}
+        // The MauiAppBuilder returns a MauiApp application.
+        return builder.Build();
+    }
 }
 ```
 
@@ -539,103 +549,137 @@ Run the application and logging information will be shown in the Output window.
 
 ![Logging Information](images/725f4831a774fa58cba6c03c62e3754b9e8d7e6834b23f98c248b1ccfb584a8c.png)  
 
-#### Configure Animations
+## Custom Fonts
 
-After quite some research, I was not able to find any information as of what does `ConfigureAnimations` do or needed for, so I ended up going straight to the code, after all, MAUI is open-source right?
+You can copy fonts from your Windows machine and install them with your application on any of the platforms. To demonstrate this, pull up your `Windows\Fonts` folder and find *Consolas*
 
-In matter of seconds, I found the code for the extension method `ConfigureAnimations`, and it looks like this:
+![image-20220512184044602](images/image-20220512184044602.png)
 
-```csharp
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-using Microsoft.Maui.Animations;
+Open the *Resources\Fonts* folder in your project in another explorer window, and copy the *Consolas* font into it. 
 
-#if __ANDROID__
-using Microsoft.Maui.Platform;
-#endif
+![image-20220512184233045](images/image-20220512184233045.png)
 
-namespace Microsoft.Maui.Hosting
+Rename the font files according to what they are:
+
+| Original     | Renamed                  |
+| ------------ | ------------------------ |
+| consola.ttf  | Consolas-Regular.ttf     |
+| consolab.ttf | Consolas-Bold.ttf        |
+| consolai.ttf | Consolas-Italic.ttf      |
+| consolaz.ttf | Consolas-Bold-Italic.ttf |
+
+They should look like this in the folder:
+
+![image-20220512184551815](images/image-20220512184551815.png)
+
+Add the following to MauiProgram.cs just above the other font definitions:
+
+```c#
+fonts.AddFont("Consolas-Regular.ttf", "ConsolasRegular");
+fonts.AddFont("Consolas-Bold.ttf", "ConsolasBold");
+fonts.AddFont("Consolas-Italic.ttf", "ConsolasItalic");
+fonts.AddFont("Consolas-Bold-Italic.ttf", "ConsolasBoldItalic");
+```
+
+Here's what your final should look like:
+
+```c#
+using Microsoft.Extensions.Logging;
+
+namespace MauiProgram;
+
+public static class MauiProgram
 {
-	public static partial class AppHostBuilderExtensions
-	{
-		public static MauiAppBuilder ConfigureAnimations(this MauiAppBuilder builder)
-		{
-#if __ANDROID__
-			builder.Services.TryAddSingleton<IEnergySaverListenerManager>(svcs => new EnergySaverListenerManager());
-			builder.Services.TryAddScoped<ITicker>(svcs => new PlatformTicker(svcs.GetRequiredService<IEnergySaverListenerManager>()));
-#else
-			builder.Services.TryAddScoped<ITicker>(svcs => new PlatformTicker());
-#endif
-			builder.Services.TryAddScoped<IAnimationManager>(svcs => new AnimationManager(svcs.GetRequiredService<ITicker>()));
+    // This method returns the entry point (a MauiApp) and is called
+    // from each platform's entry point.
+    public static MauiApp CreateMauiApp()
+    {
+        // MauiApp.CreateBuilder returns a MauiAppBuilder, which
+        // is used to configure fonts, resources, and services.
+        var builder = MauiApp.CreateBuilder();
 
-			return builder;
-		}
-	}
+        builder
+            // We give it our main App class, which derives from Application.
+            // App is defined in App.xaml.cs.
+            .UseMauiApp<App>()
+            // Default font configuration.
+            .ConfigureFonts(fonts =>
+            {
+                // AddFont takes a required filename (first parameter)
+                // and an optional alias for each font.
+                // When using these fonts in XAML you can use them
+                // either by filename (without the extension,) or the alias.
+                fonts.AddFont("Consolas-Regular.ttf", "ConsolasRegular");
+				fonts.AddFont("Consolas-Bold.ttf", "ConsolasBold");
+				fonts.AddFont("Consolas-Italic.ttf", "ConsolasItalic");
+				fonts.AddFont("Consolas-Bold-Italic.ttf", "ConsolasBoldItalic");
+                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+            })
+            // Register services
+            .Services
+                .AddSingleton<MainPage>()
+                .AddSingleton<IApiService, ApiService>()
+                // Add Logging
+                .AddLogging(configure =>
+                {
+                    configure.AddDebug();
+                });
+
+        // The MauiAppBuilder returns a MauiApp application.
+        return builder.Build();
+    }
 }
 ```
 
-From there you can determine that all the code is doing is, adding a service called `AnimationManager`, just as we did in our previous [Adding a Service](#adding-a-service) example,  which requires a Ticker, (a `PlatformTicker` to be exact,) and in the case of Android devices, the Ticker requires a `EnergySaverListenerManager`.
+Change the fonts for a couple of labels in *MainPage.xaml* :
 
-So I tried, and was successfully creating a Ticker, so I can pass to an AnimationManager, which I gave it an Animation object that I created, as shown below:
+```xaml
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiProgram.MainPage">
 
-```csharp
-        var ticker = new Ticker();
-		var animationManager = new AnimationManager(ticker);
-        var animation = new Microsoft.Maui.Controls.Animation();		
-		animationManager.Add(animation);
+    <ScrollView>
+        <VerticalStackLayout Spacing="25" Padding="30">
+
+            <Label 
+                FontFamily="ConsolasBold"
+                Text="Hello, World!"
+                SemanticProperties.HeadingLevel="Level1"
+                FontSize="32"
+                HorizontalOptions="Center" />
+
+            <Label 
+                FontFamily="Consolas-Regular"
+                Text="Welcome to .NET Multi-platform App UI"
+                SemanticProperties.HeadingLevel="Level1"
+                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
+                FontSize="18"
+                HorizontalOptions="Center" />
+
+            <Label 
+                Text="Test Data: "
+                FontSize="18"
+                x:Name="CounterLabel"
+                HorizontalOptions="Center" />
+
+            <Button 
+                Text="Click me"
+                FontAttributes="Bold"
+                SemanticProperties.Hint="Get data"
+                Clicked="OnGetDataClicked"
+                HorizontalOptions="Center" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
 ```
 
-With this, I was hoping I could create an animation, as we did in our previous episode [MAUI Animation. The .NET Show with Carl Franklin Ep 20
-](https://www.youtube.com/watch?v=EMXjaSHlvXs&list=PL8h4jt35t1wgW_PqzZ9USrHvvnk8JMQy_&index=20&t=43s), and assign it to the `Animation` object above to be reused, but that is as far as the effort went. I was not able to create an actual animation and assign it to the `Animation` object.
+Here's what it looks like:
 
-I wanted to add a "WiggleAnimation" to the `CounterLabel` with the following code: 
+Windows:
 
-```csharp
-		CounterLabel.Animate("WiggleAnimation", animation);
 
-		// Wiggle animation
-		CounterLabel.RotateTo(1, 100);
-		await CounterLabel.ScaleTo(1.05, 100);
-		await CounterLabel.ScaleTo(1, 100);
-		await CounterLabel.RotateTo(-2, 100);
-		CounterLabel.RotateTo(0, 50);
-```
-
-You may want to still add that code at the end of `OnGetDataClicked` inside `MainPage.xaml.cs` to see what it does.
-
-At the end, I was not able to make anything useful out of it.
-
-However, there are two lessons to be learned here:
-
-1. Either `ConfigureAnimations`, `AnimationManager` and `Animation` objects are used internally, and do not meant to give us animation capabilities, or we still have more things to wait for and learn regarding the development of MAUI, (we will just need to wait and see,) and
-
-2. It may be easier than you thought, to go ahead and explore open-source code, and see how things are made of to understand things better, or even contribute to it. You may find out you can contribute more than you thought.
-
-#### Register Handlers
-
-In order to register your own handlers, call the `ConfigureMauiHandlers` method on the `MauiAppBuilder` object. Then, on the `IMauiHandlersCollection` object, call the AddHandler method to add the required handler.
-
-Add the following code to MauiProgram.cs:
-
-```csharp
-			// Configure MAUI Handlers
-			.ConfigureMauiHandlers(handlers =>
-			{
-				handlers.AddHandler(typeof(MyViewType), typeof(MyViewTypeHandler));
-			})
-```
-
-Now go ahead and create `MyViewType` using the refactoring tools:
-
-![Create MyViewType](images/ddb45af306f0b919e0aa5f2e716833309eaf5f5495ec682cf548bf4fca74c1de.png)  
-
-Then go ahead and create `MyViewTypeHandler`, also using the refactoring tools:
-
-![Create MyViewTypeHandler](images/7a79082d31ce157c6dc8c7b886a926a3a8b45fb6cdb96e78ee10a1477de3703c.png)
-
-Then, the `MyViewTypeHandler` handler is registered against the `MyViewType` control. Therefore, any instances of the MyViewType control will be handled by the MyViewTypeHandler.
-
-In there, you can add any handler code, to customize things for instance, the background color of all controls just for Android for instances, or remove underlines for Android, etc.
 
 ## Conclusion
 
