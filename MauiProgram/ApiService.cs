@@ -4,7 +4,7 @@
     {
         public string GetTestData()
         {
-            return @"Test data simulating an API call.";
+            return $"Hello at {DateTime.Now.ToLongTimeString()}.";
         }
     }
 }
