@@ -7,8 +7,8 @@
         <VerticalStackLayout Spacing="25" Padding="30">
 
             <Label 
-                FontFamily="ConsolasBold"
                 Text="Hello, World!"
+                FontFamily="ConsolasRegular"
                 SemanticProperties.HeadingLevel="Level1"
                 FontSize="32"
                 HorizontalOptions="Center" />

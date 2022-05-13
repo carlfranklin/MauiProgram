@@ -42,7 +42,7 @@ The following prerequisites are needed for this demo.
 
 For this demo, we are going to use the latest version of [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/community/).
 
-In my case, I already have [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/community/) installed, so the first thing I am going to do, is update it from Preview 4.0 to 6.0.
+In my case, I already have [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/community/) installed, so the first thing I am going to do, is update it.
 
 ![image-20220512174201007](images/image-20220512174201007.png)  
 
@@ -272,7 +272,7 @@ public static class MauiProgram
 }
 ```
 
-If you look at the references for CreateMauiApp, you will see how all 5 platforms entry points, are calling this method to get the MauiApp returned.
+If you look at the references for `CreateMauiApp`, you will see how all 5 platforms entry points, are calling this method to get the `MauiApp` returned.
 
 ![CreateMauiApp References](images/9183c0304b8fbf23518a1eb3949ccde1c49c5289ea2139af0f03f3eda3e365e9.png)  
 
@@ -303,11 +303,11 @@ Let's imagine we need an service that calls some API to get some test data. Let'
 ```csharp
 namespace MauiProgram
 {
-    public class ApiService 
+    public class ApiService
     {
         public string GetTestData()
         {
-			return @"Test data simulating an API call.";
+            return $"Hello at {DateTime.Now.ToLongTimeString()}.";
         }
     }
 }
@@ -440,13 +440,11 @@ public partial class MainPage : ContentPage
 
 Now you can run the application and see how the ApiService gets injected and can be used to retrieve the data.
 
-![API Service](images/068eb3e6f0d63adca4553bb908dfa918dd0193ffe1b0493536756f99a3751a83.png)  
-
-![Data](images/3a0a0a59faa4e758d006ad9f33d5586b69c85eb3ff5fae1f71aaa85b6d2c1bf5.png)  
+![API Service](images/068eb3e6f0d63adca4553bb908dfa918dd0193ffe1b0493536756f99a3751a83.png)   
 
 The application displays the data after the Click me button is pressed.
 
-![Get Data](images/52e6f328e1f7d6b53e25539c99f7807f456c269f705c83469338ceae9947a2fc.png)  
+![image-20220513111100257](images/image-20220513111100257.png)
 
 #### Add Logging
 
@@ -632,7 +630,7 @@ public static class MauiProgram
 }
 ```
 
-Change the fonts for a couple of labels in *MainPage.xaml* :
+Change the font for the top label in *MainPage.xaml* :
 
 ```xaml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -644,14 +642,13 @@ Change the fonts for a couple of labels in *MainPage.xaml* :
         <VerticalStackLayout Spacing="25" Padding="30">
 
             <Label 
-                FontFamily="ConsolasBold"
+                FontFamily="ConsolasRegular"
                 Text="Hello, World!"
                 SemanticProperties.HeadingLevel="Level1"
                 FontSize="32"
                 HorizontalOptions="Center" />
 
             <Label 
-                FontFamily="Consolas-Regular"
                 Text="Welcome to .NET Multi-platform App UI"
                 SemanticProperties.HeadingLevel="Level1"
                 SemanticProperties.Description="Welcome to dot net Multi platform App U I"
@@ -677,13 +674,27 @@ Change the fonts for a couple of labels in *MainPage.xaml* :
 
 Here's what it looks like:
 
-Windows:
+#### Windows:
 
-![image-20220512184910123](images/image-20220512184910123.png)
+![image-20220513111434200](images/image-20220513111434200.png)
 
-Android Phone:
+#### Android Phone:
 
-![image-20220512185319060](images/image-20220512185319060.png)
+![image-20220513111613633](images/image-20220513111613633.png)
+
+I changed the font family to `ConsolasBold` and deployed to my MacInCloud server. 
+
+For details see [The .NET Show Episode 19: Maui on Mac](https://www.youtube.com/watch?v=CYoNWt57C5k)
+
+#### iOS (iPad Simulator)
+
+![image-20220513112427538](images/image-20220513112427538.png)
+
+#### Mac Native:
+
+![image-20220513112049061](images/image-20220513112049061.png)
+
+
 
 ## Conclusion
 
